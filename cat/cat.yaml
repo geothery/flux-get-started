@@ -33,13 +33,6 @@ spec:
               port: http
               scheme: HTTP
             initialDelaySeconds: 15
-          resources:
-            limits:
-              cpu: 1000m
-              memory: 512Mi
-            requests:
-              cpu: 500m
-              memory: 256Mi   
 ---
 apiVersion: v1
 kind: Service
