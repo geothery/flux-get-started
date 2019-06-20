@@ -20,8 +20,6 @@ spec:
     master:
       jenkinsAdminEmail: noreply@nowhere.com
       numExecutors: 1
-      adminUser: admin
-      adminPassword: decathl0n.
       runAsUser: 1000
       fsGroup: 1000
       serviceType: NodePort
