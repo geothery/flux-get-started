@@ -37,7 +37,7 @@ spec:
         enabled: false
       ingress:
         enabled: true
-        hostName: jenkins.1.2.3.4.xip.io
+        hostName: jenkins.35.244.235.119.xip.io
     agent:
       enabled: false
       hostName: 
