@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    app: jenkins
+  name: jenkins
+---
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: jenkins
+  namespace: jenkins
+spec:
+  releaseName: jenkins
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com/
+    name: jenkins
+    version: 1.1.24
+  values:
+    master:
+      jenkinsAdminEmail: noreply@nowhere.com
+      numExecutors: 1
+      adminUser: admin
+      adminPassword: decathl0n.
+      runAsUser: 1000
+      fsGroup: 1000
+      serviceType: NodePort
+      installPlugins:
+        - workflow-job:2.32
+        - workflow-aggregator:2.6
+        - credentials-binding:1.19
+        - git:3.10.0
+        - github:1.29.4
+        - antisamy-markup-formatter:1.5
+      enableRawHtmlMarkupFormatter: true
+      prometheus:
+        enabled: false
+      ingress:
+        enabled: true
+        hostName: jenkins.1.2.3.4.xip.io
+    agent:
+      enabled: false
+      hostName: 
+    persistence:
+      storageClass: standard
+      size: "10Gi"
