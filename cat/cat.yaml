@@ -60,7 +60,7 @@ spec:
 apiVersion: v1
 kind: Ingress
 metadata:
-  name: hello-ingress-gce
+  name: cat-ingress
   namespace: default
   annotations:
     flux.weave.works/ignore: 'false'
