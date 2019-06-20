@@ -39,7 +39,23 @@ spec:
               memory: 512Mi
             requests:
               cpu: 500m
-              memory: 256Mi          
+              memory: 256Mi   
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cat
+  labels:
+    app: cat
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: cat
 ---
 apiVersion: v1
 kind: Ingress
