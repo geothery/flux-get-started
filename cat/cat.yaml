@@ -57,7 +57,7 @@ spec:
   selector:
     app: cat
 ---
-apiVersion: v1
+apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: cat-ingress
