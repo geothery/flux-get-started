@@ -1,0 +1,1 @@
+{"jobID":"972e9042-5b7a-c527-8cb0-a63e05838cd8","spec":{"type":"policy","cause":{"Message":"","User":"GregoireW \u003cgregoirew@users.noreply.github.com\u003e"},"spec":{"cow:deployment/cow":{"add":{"automated":"true"},"remove":{}}}},"result":null}
