@@ -72,7 +72,7 @@ spec:
     serviceName: cow
     servicePort: 80
   rules:
-  - host: cow.34.98.95.58.xip.io
+  - host: cow.35.244.235.119.xip.io
     http:
       paths:
       - backend:
