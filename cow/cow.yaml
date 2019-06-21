@@ -1,0 +1,82 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    name: cow
+  name: cow
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "cow"
+  namespace: cow
+  labels:
+    app: cow
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cow
+  template:
+    metadata:
+      labels:
+        app: cow
+    spec:
+      containers:
+        - name: cow
+          image: "gcr.io/gcp-formation-b5uc/cow:5"
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          livenessProbe:
+            tcpSocket:
+              port: http
+            initialDelaySeconds: 1
+            periodSeconds: 2
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+              scheme: HTTP
+            initialDelaySeconds: 1
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cow
+  namespace: cow
+  labels:
+    app: cow
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: cow
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: cow-ingress
+  namespace: cow
+  annotations:
+    kubernetes.io/ingress.class: 'gce'
+    kubernetes.io/ingress.global-static-ip-name: "cat-ingress"
+spec:
+  backend:
+    serviceName: cow
+    servicePort: 80
+  rules:
+  - host: cow.34.98.95.58.xip.io
+    http:
+      paths:
+      - backend:
+          serviceName: cow
+          servicePort: 80
+        path: /
+---
