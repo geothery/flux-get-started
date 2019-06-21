@@ -67,9 +67,6 @@ kind: Ingress
 metadata:
   name: cow-ingress
   namespace: cow
-  annotations:
-    kubernetes.io/ingress.class: 'gce'
-    kubernetes.io/ingress.global-static-ip-name: "cat-ingress"
 spec:
   backend:
     serviceName: cow
