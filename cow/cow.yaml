@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
       - name: cow
-        image: "gcr.io/gcp-formation-b5uc/cow:11"
+        image: "gcr.io/gcp-formation-b5uc/cow:12"
         imagePullPolicy: Always
         ports:
         - name: http
